@@ -8,6 +8,42 @@ describe('Abrigo de Animais', () => {
     expect(resultado.lista).toBeFalsy();
   });
 
+  test('Deve rejeitar animal duplicado', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 'Rex, Rex');
+    expect(resultado.erro).toBe('Animal duplicado');
+    expect(resultado.lista).toBeFalsy();
+  });
+
+  test('Deve rejeitar brinquedo inválido da pessoa 1', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('OSSO,RATO', 'RATO,BOLA', 'Rex');
+    expect(resultado.erro).toBe('Brinquedo inválido');
+    expect(resultado.lista).toBeFalsy();
+  });
+
+  test('Deve rejeitar brinquedo inválido da pessoa 2', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('laser,RATO', 'PIZZA,BOLA', 'Rex');
+    expect(resultado.erro).toBe('Brinquedo inválido');
+    expect(resultado.lista).toBeFalsy();
+  });
+
+  test('Deve rejeitar brinquedo como inválido caso receba inteiro', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas(1, 'PIZZA,BOLA', 'Rex');
+    expect(resultado.erro).toBe('Brinquedo inválido');
+    expect(resultado.lista).toBeFalsy();
+  });
+
+  test('Deve rejeitar brinquedo duplicado pela pessoa 1', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('RATO,RATO', 'RATO,BOLA', 'Rex');
+    expect(resultado.erro).toBe('Brinquedo duplicado');
+    expect(resultado.lista).toBeFalsy();
+  });
+
+  test('Deve rejeitar brinquedo duplicado pela pessoa 2', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('RATO,LASER', 'BOLA,BOLA', 'Rex');
+    expect(resultado.erro).toBe('Brinquedo duplicado');
+    expect(resultado.lista).toBeFalsy();
+  });
+
   test('Deve encontrar pessoa para um animal', () => {
     const resultado = new AbrigoAnimais().encontraPessoas(
       'RATO,BOLA', 'RATO,NOVELO', 'Rex,Fofo');
