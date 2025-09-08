@@ -6,10 +6,11 @@ class AbrigoAnimais {
     const brinquedosValidos = ['BOLA', 'CAIXA', 'LASER', 'NOVELO', 'RATO', 'SKATE'];
 
     //Transforma as entradas em strings e cria listas separando por vírgula 
-    //no caso da lista de brinquedos coverte para UPPER CASE
-    const listaBrinquedosPessoa1 = brinquedosPessoa1.toString().toUpperCase().split(',');
-    const listaBrinquedosPessoa2 = brinquedosPessoa2.toString().toUpperCase().split(',');
-    const listaOrdemAnimais = ordemAnimais.split(',');
+    //remove entradas com espaços
+    //e no caso da lista de brinquedos coverte para UPPER CASE
+    const listaBrinquedosPessoa1 = brinquedosPessoa1.toString().toUpperCase().split(',').map(a => a.trim());
+    const listaBrinquedosPessoa2 = brinquedosPessoa2.toString().toUpperCase().split(',').map(a => a.trim());
+    const listaOrdemAnimais = ordemAnimais.toString().split(',').map(a => a.trim());
 
     //Valida brinquedos duplicados
     for (let i = 0; i < listaBrinquedosPessoa1.length; i++) {
@@ -34,6 +35,20 @@ class AbrigoAnimais {
     for (let brinquedo of listaBrinquedosPessoa2) {
       if (!brinquedosValidos.includes(brinquedo)) {
         return { erro: 'Brinquedo inválido' };
+      }
+    }
+
+    //Valida animais duplicados
+    for (let i = 0; i < listaOrdemAnimais.length; i++) {
+      if (listaOrdemAnimais.indexOf(listaOrdemAnimais[i]) !== i) {
+        return { erro: 'Animal duplicado' };
+      }
+    }
+
+    //Valida animais inválidos
+    for (let animal of listaOrdemAnimais) {
+      if (!animaisDisponiveis.includes(animal)) {
+        return { erro: 'Animal inválido' };
       }
     }
     

@@ -2,21 +2,21 @@ import { AbrigoAnimais } from "./abrigo-animais";
 
 describe('Abrigo de Animais', () => {
 
-  test('Deve rejeitar animal inválido', () => {
+  test('Deve rejeitar animal inválido da lista', () => {
     const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 'Lulu');
     expect(resultado.erro).toBe('Animal inválido');
     expect(resultado.lista).toBeFalsy();
   });
 
-  test('Deve rejeitar animal duplicado', () => {
-    const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 'Rex, Rex');
+  test('Deve rejeitar animal duplicado da lista', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 'Rex,Rex');
     expect(resultado.erro).toBe('Animal duplicado');
     expect(resultado.lista).toBeFalsy();
   });
 
-  test('Deve rejeitar animal como como inválido caso receba inteiro', () => {
-    const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 'Rex, Rex');
-    expect(resultado.erro).toBe('Animal duplicado');
+  test('Deve rejeitar animal como inválido caso receba inteiro', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 1);
+    expect(resultado.erro).toBe('Animal inválido');
     expect(resultado.lista).toBeFalsy();
   });  
 
