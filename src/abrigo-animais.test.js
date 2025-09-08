@@ -14,6 +14,12 @@ describe('Abrigo de Animais', () => {
     expect(resultado.lista).toBeFalsy();
   });
 
+  test('Deve rejeitar animal como como inválido caso receba inteiro', () => {
+    const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 'Rex, Rex');
+    expect(resultado.erro).toBe('Animal duplicado');
+    expect(resultado.lista).toBeFalsy();
+  });  
+
   test('Deve rejeitar brinquedo inválido da pessoa 1', () => {
     const resultado = new AbrigoAnimais().encontraPessoas('OSSO,RATO', 'RATO,BOLA', 'Rex');
     expect(resultado.erro).toBe('Brinquedo inválido');

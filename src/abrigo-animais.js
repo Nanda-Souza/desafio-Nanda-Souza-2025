@@ -5,8 +5,8 @@ class AbrigoAnimais {
     const animaisDisponiveis = ['Bola', 'Bebe', 'Fofo', 'Loco', 'Mimi', 'Rex', 'Zero'];
     const brinquedosValidos = ['BOLA', 'CAIXA', 'LASER', 'NOVELO', 'RATO', 'SKATE'];
 
-    //Transforma as entradas em strings e coverte para UPPER CASE
-    //E cria listas separando por vírgula
+    //Transforma as entradas em strings e cria listas separando por vírgula 
+    //no caso da lista de brinquedos coverte para UPPER CASE
     const listaBrinquedosPessoa1 = brinquedosPessoa1.toString().toUpperCase().split(',');
     const listaBrinquedosPessoa2 = brinquedosPessoa2.toString().toUpperCase().split(',');
     const listaOrdemAnimais = ordemAnimais.split(',');
