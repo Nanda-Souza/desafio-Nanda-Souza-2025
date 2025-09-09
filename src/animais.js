@@ -1,19 +1,43 @@
 
 const animaisDisponiveis = [
-    {Nome: 'Bola'}, 
-    {Nome: 'Bebe'}, 
-    {Nome: 'Fofo'}, 
-    {Nome: 'Loco'}, 
-    {Nome: 'Mimi'}, 
-    {Nome: 'Rex'}, 
-    {Nome: 'Zero'}
+    {
+        Nome: 'Bola',
+        Tipo: 'CÃO',
+        Brinquedos: ['CAIXA', 'NOVELO']
+        }, 
+    {
+        Nome: 'Bebe',
+        Tipo: 'CÃO',
+        Brinquedos: ['LASER', 'RATO', 'BOLA']
+        }, 
+    {
+        Nome: 'Fofo',
+        Tipo: 'GATO',
+        Brinquedos: ['BOLA', 'RATO', 'LASER']
+        }, 
+    {
+        Nome: 'Loco',
+        Tipo: 'JABUTI',
+        Brinquedos: ['SKATE', 'RATO']
+        }, 
+    {
+        Nome: 'Mimi',
+        Tipo: 'GATO',
+        Brinquedos: ['BOLA', 'LASER']
+        }, 
+    {
+        Nome: 'Rex',
+        Tipo: 'CÃO',
+        Brinquedos: ['RATO', 'BOLA']
+        }, 
+    {
+        Nome: 'Zero',
+        Tipo: 'GATO',
+        Brinquedos: ['RATO', 'BOLA']
+        }
 ];
 
-class Animais {
-    //Metodo para retornar a lista de animais disponíveis no abrigo
-    // static listaAnimais() {
-    //     return animaisDisponiveis;
-    // }
+class Animais {   
 
     //Valida lista por animais duplicados, se encontrar retorna true
     static validaAnimalDuplicado(listaAnimais) {
@@ -26,9 +50,10 @@ class Animais {
         return false;
     }
 
+    //Valida se o animal existe no abrigo comparando o nome da lista com a propriedade nome em UPPER CASE
     static validaAnimalAbrigo(listaAnimais) {
         for (let animal of listaAnimais) {
-            if (!animaisDisponiveis.some(a => a.Nome === animal)) {
+            if (!animaisDisponiveis.some(a => a.Nome.toUpperCase() === animal.toUpperCase())) {
                 return false;
             }
         }
