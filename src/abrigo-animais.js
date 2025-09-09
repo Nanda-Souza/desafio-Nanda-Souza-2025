@@ -1,8 +1,9 @@
+import { Animais } from './animais.js';
+
 class AbrigoAnimais {
 
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
-    //Lista de brinquedos e animais válidos
-    const animaisDisponiveis = ['Bola', 'Bebe', 'Fofo', 'Loco', 'Mimi', 'Rex', 'Zero'];
+    //Lista de brinquedos
     const brinquedosValidos = ['BOLA', 'CAIXA', 'LASER', 'NOVELO', 'RATO', 'SKATE'];
 
     //Transforma as entradas em strings e cria listas separando por vírgula 
@@ -39,23 +40,16 @@ class AbrigoAnimais {
     }
 
     //Valida animais duplicados
-    for (let i = 0; i < listaOrdemAnimais.length; i++) {
-      if (listaOrdemAnimais.indexOf(listaOrdemAnimais[i]) !== i) {
-        return { erro: 'Animal duplicado' };
-      }
+    if (Animais.validaAnimalDuplicado(listaOrdemAnimais)) {
+      return { erro: 'Animal duplicado' };
     }
 
-    //Valida animais inválidos
-    for (let animal of listaOrdemAnimais) {
-      if (!animaisDisponiveis.includes(animal)) {
-        return { erro: 'Animal inválido' };
-      }
+    //Valida animais inválidos    
+    //Se a função retorna false, significa que não achou o animal na lista do abrigo
+    if (!Animais.validaAnimalAbrigo(listaOrdemAnimais)) {
+      return { erro: 'Animal inválido' };
     }
     
-
-    
-
-
     
   }
 }
