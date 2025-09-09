@@ -1,4 +1,4 @@
-
+//Lista de animais do abrigo incluindo nome, tipo e brinquedos favoritos
 const animaisDisponiveis = [
     {
         Nome: 'Bola',

@@ -1,11 +1,9 @@
 import { Animais } from './animais.js';
+import { Brinquedos } from './brinquedos.js';
 
 class AbrigoAnimais {
 
-  encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
-    //Lista de brinquedos
-    const brinquedosValidos = ['BOLA', 'CAIXA', 'LASER', 'NOVELO', 'RATO', 'SKATE'];
-
+  encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {    
     //Transforma as entradas em strings e cria listas separando por vírgula 
     //remove entradas com espaços
     //e no caso da lista de brinquedos coverte para UPPER CASE
@@ -13,30 +11,25 @@ class AbrigoAnimais {
     const listaBrinquedosPessoa2 = brinquedosPessoa2.toString().toUpperCase().split(',').map(a => a.trim());
     const listaOrdemAnimais = ordemAnimais.toString().split(',').map(a => a.trim());
 
-    //Valida brinquedos duplicados
-    for (let i = 0; i < listaBrinquedosPessoa1.length; i++) {
-      if (listaBrinquedosPessoa1.indexOf(listaBrinquedosPessoa1[i]) !== i) {
-        return { erro: 'Brinquedo duplicado' };
-      }
-    }
-
-    for (let j = 0; j < listaBrinquedosPessoa2.length; j++) {
-      if (listaBrinquedosPessoa2.indexOf(listaBrinquedosPessoa2[j]) !== j) {
-        return { erro: 'Brinquedo duplicado' };
-      }
+    //Valida brinquedos duplicados    
+    if (Brinquedos.validaBrinquedosDuplicados(listaBrinquedosPessoa1, listaBrinquedosPessoa2)) {
+      return { erro: 'Brinquedo duplicado' };
     }
 
     //Valida brinquedos inválidos
-    for (let brinquedo of listaBrinquedosPessoa1) {
-      if (!brinquedosValidos.includes(brinquedo)) {
-        return { erro: 'Brinquedo inválido' };
-      }
-    }
+    // for (let brinquedo of listaBrinquedosPessoa1) {
+    //   if (!brinquedosValidos.includes(brinquedo)) {
+    //     return { erro: 'Brinquedo inválido' };
+    //   }
+    // }
 
-    for (let brinquedo of listaBrinquedosPessoa2) {
-      if (!brinquedosValidos.includes(brinquedo)) {
-        return { erro: 'Brinquedo inválido' };
-      }
+    // for (let brinquedo of listaBrinquedosPessoa2) {
+    //   if (!brinquedosValidos.includes(brinquedo)) {
+    //     return { erro: 'Brinquedo inválido' };
+    //   }
+    // }
+    if (Brinquedos.validaBrinquedoInvalido(listaBrinquedosPessoa1, listaBrinquedosPessoa2)) {
+      return { erro: 'Brinquedo inválido' };
     }
 
     //Valida animais duplicados
