@@ -18,7 +18,7 @@ describe('Abrigo de Animais', () => {
     const resultado = new AbrigoAnimais().encontraPessoas('CAIXA,RATO', 'RATO,BOLA', 1);
     expect(resultado.erro).toBe('Animal inválido');
     expect(resultado.lista).toBeFalsy();
-  });  
+  });    
 
   test('Deve rejeitar brinquedo inválido da pessoa 1', () => {
     const resultado = new AbrigoAnimais().encontraPessoas('OSSO,RATO', 'RATO,BOLA', 'Rex');

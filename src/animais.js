@@ -37,6 +37,16 @@ const animaisDisponiveis = [
         }
 ];
 
+//Função para validar se os indices estão em ordem crescente
+function validaOrdemCrescente(lista) {
+  for (let i = 1; i < lista.length; i++) {
+    if (lista[i] < lista[i - 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
 class Animais {   
 
     //Valida lista por animais duplicados, se encontrar retorna true
@@ -60,6 +70,32 @@ class Animais {
 
         return true;
 
+    }
+
+    //Valida as preferencias do animal
+    static validaPreferenciaAnimal(nomeAnimal, listaBrinquedos) {
+        const animal = animaisDisponiveis.find(a => a.Nome.toUpperCase() === nomeAnimal.toUpperCase());
+        const brinquedosFavoritos = animal.Brinquedos;
+        const ordemFavoritos = [];
+
+        //Percorre os brinquedos favoritos do animal e verifica se estão na lista de brinquedos da pessoa
+        for (let brinquedo of brinquedosFavoritos) {            
+            
+            for (let brinquedoLista of listaBrinquedos) {
+                //Se o brinquedo favorito estiver na lista adiciona a posição do indice para termos a ordem
+                if (brinquedo === brinquedoLista) {
+                    ordemFavoritos.push(listaBrinquedos.indexOf(brinquedo));
+                }
+            }
+        }        
+
+        //Caso o tamanho da lista de ordemFavoritos for igual ao tamanho da lista de brinquedos significa que todos os brinquedos foram encontrados
+        //Se a função validaOrdem crescente retornar true significa que os brinquedos estão na ordem de preferencia mesmo intercalados
+        if (ordemFavoritos.length == brinquedosFavoritos.length && validaOrdemCrescente(ordemFavoritos)) {
+            return true;
+        } else {
+            return false;
+        }        
     }
 
 
