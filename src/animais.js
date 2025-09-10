@@ -47,6 +47,18 @@ function validaOrdemCrescente(lista) {
   return true;
 }
 
+//Retorna a lista de todos os animais que já foram adotados
+function brinquedosDosAdotados(listaAdotados) {
+  const brinquedos = [];
+  for (let nome of listaAdotados) {
+    const animal = animaisDisponiveis.find(a => a.Nome.toUpperCase() === nome.toUpperCase());
+    if (animal) {
+      brinquedos.push(...animal.Brinquedos);
+    }
+  }
+  return brinquedos;
+}
+
 class Animais {   
 
     //Valida lista por animais duplicados, se encontrar retorna true
@@ -90,11 +102,22 @@ class Animais {
             }
         }
         
-        //Valida se o animal é o jabitu Loco e se a pessoa já adotou algum outro animal
+        //Valida se o animal é o jabitu Loco, se o animal é um gato e se a pessoa já adotou algum outro animal
         //Se for o Loco ordemCrescente será true pois  ele não se importa com a ordem dos brinquedos
+        //Se for um gato verifica a lista de brinquedos dos animais já adotados pois gatos não dividem brinquedos
         if (nomeAnimal.toUpperCase() === 'LOCO' && listaAdotados.length > 0) {
             ordemCrestente = true;
-        } else {
+        } else if(animal.Tipo == 'GATO' && listaAdotados.length > 0){
+            let brinquedosAdotados = brinquedosDosAdotados(listaAdotados);
+            
+            for (let brinquedo of brinquedosFavoritos) {
+                if (brinquedosAdotados.includes(brinquedo)) {
+                    ordemCrestente = false;
+                }
+
+            }
+
+        } else{
             ordemCrestente = validaOrdemCrescente(ordemFavoritos);
         }
 

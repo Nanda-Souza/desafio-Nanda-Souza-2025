@@ -149,7 +149,7 @@ describe('Abrigo de Animais', () => {
       expect(resultado.erro).toBeFalsy();
   });
 
-  test('Não deve encontrar pessoa para um Loco sem ter todos os brinquedos caso tenha outro animal adotado', () => {
+  test('Não deve encontrar pessoa para o Loco sem ter todos os brinquedos caso tenha outro animal adotado', () => {
     const resultado = new AbrigoAnimais().encontraPessoas(
       'RATO,BOLA', 'RATO,NOVELO', 'Rex,Loco');
       expect(resultado.lista[0]).toBe('Loco - abrigo');

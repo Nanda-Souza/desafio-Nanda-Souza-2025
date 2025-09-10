@@ -59,7 +59,7 @@ class AbrigoAnimais {
           listaResultado.push(`${animal} - abrigo`);
       }
     }      
-    //console.log(listaResultado.sort());
+    
     return { lista: listaResultado.sort()};
 
   }
