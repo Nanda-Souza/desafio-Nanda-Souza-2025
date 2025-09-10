@@ -46,12 +46,13 @@ class AbrigoAnimais {
       
       //Caso as duas pessoas tenham a preferência do animal ele ficará no abrigo
       //Caso contrario valida qual pessoa tem a preferência e se ambas retornarm false o animal irá para o abrigo
+      //Caso a pessoa tenha adotado 3 animais, mesmo que tenha a preferência o animal irá para o abrigo
       if (prefPessoa1 && prefPessoa2) {
           listaResultado.push(`${animal} - abrigo`);
-      } else if (prefPessoa1) {
+      } else if (prefPessoa1 && listaAdotadosPessoa1.length < 3) {
           listaResultado.push(`${animal} - pessoa 1`);
           listaAdotadosPessoa1.push(animal);
-      } else if (prefPessoa2) {
+      } else if (prefPessoa2 && listaAdotadosPessoa2.length < 3) {
           listaResultado.push(`${animal} - pessoa 2`);
           listaAdotadosPessoa2.push(animal);
       } else {

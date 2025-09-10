@@ -90,7 +90,8 @@ class Animais {
             }
         }
         
-        //
+        //Valida se o animal é o jabitu Loco e se a pessoa já adotou algum outro animal
+        //Se for o Loco ordemCrescente será true pois  ele não se importa com a ordem dos brinquedos
         if (nomeAnimal.toUpperCase() === 'LOCO' && listaAdotados.length > 0) {
             ordemCrestente = true;
         } else {
