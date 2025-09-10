@@ -5,9 +5,12 @@ class AbrigoAnimais {
 
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {    
     //Variaveis de controle usadas para montar a lista de resultado
-    let listaResultado = [];
+    const listaResultado = [];
+    const listaAdotadosPessoa1 = [];
+    const listaAdotadosPessoa2 = [];
     let prefPessoa1 = false;
-    let prefPessoa2 = false;    
+    let prefPessoa2 = false;
+
     
     //Transforma as entradas em strings e cria listas separando por vírgula 
     //remove entradas com espaços
@@ -38,8 +41,8 @@ class AbrigoAnimais {
     }
 
     for (let animal of listaOrdemAnimais) {
-      prefPessoa1 = Animais.validaPreferenciaAnimal(animal, listaBrinquedosPessoa1)
-      prefPessoa2 = Animais.validaPreferenciaAnimal(animal, listaBrinquedosPessoa2)
+      prefPessoa1 = Animais.validaPreferenciaAnimal(animal, listaBrinquedosPessoa1, listaAdotadosPessoa1)
+      prefPessoa2 = Animais.validaPreferenciaAnimal(animal, listaBrinquedosPessoa2, listaAdotadosPessoa2)
       
       //Caso as duas pessoas tenham a preferência do animal ele ficará no abrigo
       //Caso contrario valida qual pessoa tem a preferência e se ambas retornarm false o animal irá para o abrigo
@@ -47,8 +50,10 @@ class AbrigoAnimais {
           listaResultado.push(`${animal} - abrigo`);
       } else if (prefPessoa1) {
           listaResultado.push(`${animal} - pessoa 1`);
+          listaAdotadosPessoa1.push(animal);
       } else if (prefPessoa2) {
           listaResultado.push(`${animal} - pessoa 2`);
+          listaAdotadosPessoa2.push(animal);
       } else {
           listaResultado.push(`${animal} - abrigo`);
       }

@@ -73,10 +73,11 @@ class Animais {
     }
 
     //Valida as preferencias do animal
-    static validaPreferenciaAnimal(nomeAnimal, listaBrinquedos) {
+    static validaPreferenciaAnimal(nomeAnimal, listaBrinquedos, listaAdotados) {
         const animal = animaisDisponiveis.find(a => a.Nome.toUpperCase() === nomeAnimal.toUpperCase());
         const brinquedosFavoritos = animal.Brinquedos;
         const ordemFavoritos = [];
+        let ordemCrestente = false;
 
         //Percorre os brinquedos favoritos do animal e verifica se estão na lista de brinquedos da pessoa
         for (let brinquedo of brinquedosFavoritos) {            
@@ -87,11 +88,18 @@ class Animais {
                     ordemFavoritos.push(listaBrinquedos.indexOf(brinquedo));
                 }
             }
-        }        
+        }
+        
+        //
+        if (nomeAnimal.toUpperCase() === 'LOCO' && listaAdotados.length > 0) {
+            ordemCrestente = true;
+        } else {
+            ordemCrestente = validaOrdemCrescente(ordemFavoritos);
+        }
 
         //Caso o tamanho da lista de ordemFavoritos for igual ao tamanho da lista de brinquedos significa que todos os brinquedos foram encontrados
         //Se a função validaOrdem crescente retornar true significa que os brinquedos estão na ordem de preferencia mesmo intercalados
-        if (ordemFavoritos.length == brinquedosFavoritos.length && validaOrdemCrescente(ordemFavoritos)) {
+        if (ordemFavoritos.length == brinquedosFavoritos.length && ordemCrestente) {
             return true;
         } else {
             return false;
